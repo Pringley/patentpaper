@@ -1,0 +1,40 @@
+Abstract
+========
+
+-   certain patents are historically relevant
+
+-   find metrics that match consensus for top few
+
+-   extend metrics to entire dataset to find correlations that indicate
+    success/influence of a patent
+
+Outline
+=======
+
+1.  Background on LEDs (important innovations, patents, etc)
+
+    - describe what our "expected results" are for top patents
+
+2.  Techniques
+
+    - prior art in citation networks
+
+    - baseline: # of forward citations (outdegree)
+
+    - existing techniques: hits, pagerank
+
+    - new techniques: neighborrank, feature classifier
+
+    - which match the historical background best?
+
+3.  Extended Analysis
+
+    - run best techniques on entire dataset
+
+    - look for correlations with company size, age, location, etc
+
+4.  Conclusions
+
+    - do key innovations come from big or small companies?
+
+    - are innovations geographically clustered? temporally?
