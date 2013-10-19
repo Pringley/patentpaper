@@ -1,0 +1,6 @@
+# Output files
+paper.pdf
+
+# Editor files
+*~
+.*.swp
