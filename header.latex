@@ -1,0 +1,9 @@
+% Use more sane margins.
+\usepackage[margin=1in]{geometry}
+
+% Use LaTeX default paragraph styling (not Pandoc default).
+\setlength{\parskip}{0.0pt plus 1.0pt}
+\setlength{\parindent}{15.0pt}
+
+% Change page layout to double-column.
+\twocolumn
