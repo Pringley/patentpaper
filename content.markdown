@@ -84,9 +84,27 @@ Techniques
 Highest outdegree
 -----------------
 
+The simplest method for determining the importance of a node in a citation
+network is to simply count the number of times the node is cited -- that is, a
+node with high outdegree is considered more important.
+
+These are the top three patents sorted by outdegree:
+
+1. US4769292 A (444 citations) -- Kodak 1987
+2. US4539507 A (360 citations) -- Kodak 1983
+3. US5247190 A (339 citations) -- Cambridge 1990
+
 PageRank
 --------
 \label{sec:pageranktechnique}
+
+These are the top three patents sorted by PageRank score:
+
+1. US4769292 A -- Kodak 1987
+2. US4539507 A -- Kodak 1983
+3. US4356429 A -- Kodak 1980
+
+US5247190 A (Cambridge 1990) is ranked seventh.
 
 HITS
 ----
