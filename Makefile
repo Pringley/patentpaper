@@ -1,18 +1,20 @@
 OUTPUT = paper.pdf
 
-MARKDOWN = content.markdown
-HEADER = header.latex
+CONTENT = content.markdown
+STYLE = style.latex
 
 PANDOC = pandoc
-FLAGS = --smart --standalone --number-sections
+FLAGS = --smart \
+		--standalone \
+		--number-sections \
+		--variable geometry:margin=1in \
+		--include-in-header $(STYLE) \
+		--output $(OUTPUT)
 
 .PHONY: clean
 
-$(OUTPUT): $(MARKDOWN) $(HEADER)
-	$(PANDOC) $(FLAGS) \
-		--include-in-header $(HEADER) \
-		--output $(OUTPUT) \
-		-- $(MARKDOWN)
+$(OUTPUT): $(CONTENT) $(STYLE)
+	$(PANDOC) $(FLAGS) -- $(CONTENT)
 
 clean:
 	rm -rf $(OUTPUT)
