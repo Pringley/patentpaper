@@ -3,7 +3,7 @@
 ## Requirements
 
 -   [Pandoc](http://johnmacfarlane.net/pandoc/), John MacFarlane's markup
-    converter.
+    converter
 
 -   [TexLive](http://www.tug.org/texlive/), or another way to generate PDFs
     from LaTeX source
