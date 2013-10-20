@@ -110,8 +110,28 @@ HITS
 ----
 \label{sec:hitstechnique}
 
+These are the top three patents sorted by Hub score from the HITS algorithm:
+
+1. US4918497 A -- Cree 1988
+2. US4966862 A -- Cree 1989
+3. ***\* unknown id***
+
+These patents have outdegree of 120 and 110 respectively, and would be ranked
+38th and 43rd by outdegree.
+
+(The third node exists in the data graph but is missing any metadata to
+identify which patent it corresponds to.)
+
 Neighborhood size
 -----------------
+
+One new metric we explored was neighborhood size -- rank nodes by the number of
+other nodes that can be reached within a fixed number of forward edges. These
+are the top three patents sorted by 2-neighborhood:
+
+1. US6791119 B2 -- Cree 2002
+2. US6830828 B2 -- Princeton 2001
+3. US6175345 B1 -- Canon 1998
 
 Analysis
 ========
