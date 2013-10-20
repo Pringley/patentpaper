@@ -1,4 +1,4 @@
-# Patent Paper
+# Techniques for identifying influence in citation networks
 
 ## Requirements
 

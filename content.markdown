@@ -1,5 +1,5 @@
-% Patent Paper
-% Ben Pringle
+% Techniques for identifying influence in citation networks
+% Benjamin Pringle; Mukkai Krishnamoorthy; Kenneth Simons
 
 \begin{abstract}
 Certain patents are historically important or relevant.  We present several
