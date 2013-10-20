@@ -1,0 +1,7 @@
+digraph oled {
+    size="1.5,1.5";
+    margin="0";
+    "NPL [1975]" -> "Kodak [1983]";
+    "NPL [1975]" -> "Kodak [1987]";
+    "Kodak [1983]" -> "Kodak [1987]";
+}
