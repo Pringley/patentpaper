@@ -1,2 +1,0 @@
-% Patent Paper
-% Ben Pringle

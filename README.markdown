@@ -22,8 +22,6 @@ This will create an output file, `paper.pdf`.
 
 ## File Structure
 
--   `title.markdown` contains title and author information
--   `abstract.latex` contains the abstract
 -   `content.markdown` has the main paper content
 -   `header.latex` specifies LaTeX-specific styles
 
