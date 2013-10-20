@@ -12,3 +12,36 @@ In this paper, we perform a case study on a set of LED-related patents to
 discover if certain authors, companies, or locations correlate with patent
 success.
 \end{abstract}
+
+Background
+==========
+
+Citation network analysis
+-------------------------
+
+Important LED patents
+---------------------
+
+Data format and representation
+------------------------------
+
+Techniques
+==========
+
+Highest outdegree
+-----------------
+
+PageRank
+--------
+
+HITS
+----
+
+Neighborhood size
+-----------------
+
+Analysis
+========
+
+Conclusions
+===========
