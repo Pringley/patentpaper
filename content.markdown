@@ -220,5 +220,67 @@ each:
 > `nichia` (370), `fujifilm` (369), `ge` (363), `sumitomo` (323), `lg/philips`
 > (293)
 
+Summed outdegree
+----------------
+
+The "summed score" metric isn't very useful in this situation, since we've
+already ranked our patents by frequency in our definition of company size. The
+summed score for outdegree gives us little new information.
+
+Below is our list of top 25 patents, with their relative ranking by summed
+outdegree score in parentheses:
+
+> `samsung` (2), `semiconductor energy lab` (1), `seiko` (3), `sharp` (5),
+> `panasonic` (6), `sony` (7), `toshiba` (8), `sanyo (tokyo sanyo electric)`
+> (10), `philips` (9), `kodak` (4), `hitachi` (15), `osram` (14), `nec` (11),
+> `lg` (17), `idemitsu kosan co` (12), `canon` (16), `pioneer` (13),
+> `mitsubishi` (18), `rohm` (22), `tdk` (20), `nichia` (19), `fujifilm` (25),
+> `ge` (21), `sumitomo` (26), `lg/philips` (27)
+
+As expected, our top-frequency companies have very high rankings by summed
+outdegree score.
+
+Normalized summed outdegree
+---------------------------
+
+Instead, we can look at the *normalized* outdegree, or the mean outdegree of a
+patent produced by one of our companies. Let's take a look at just our top 10
+companies:
+
+1. `samsung` -- 11.51
+2. `semiconductor energy lab` -- 14.91
+3. `seiko` -- 13.06
+4. `sharp` -- 13.39
+5. `panasonic` -- 13.13
+6. `sony` -- 13.23
+7. `toshiba` -- 14.22
+8. `sanyo (tokyo sanyo electric)` -- 13.86
+9. `philips` -- 14.47
+10. `kodak` -- 19.98
+
+By comparison, the mean outdegree over *all* patents is 5.60.
+
+Contribution factor -- outdegree
+--------------------------------
+
+Let us define patents as relatively significant if their outdegree is in the
+75th percentile. (For our LED dataset, this includes all patents with at least
+11 citations.)
+
+Then, we can calculate contribution factors for each company by finding the
+fraction of their patents that are considered relatively significant. Here are
+the results:
+
+1. `samsung` -- .63
+2. `semiconductor energy lab` -- .85
+3. `seiko` -- .78
+4. `sharp` -- .86
+5. `panasonic` -- .85
+6. `sony` -- .82
+7. `toshiba` -- .89
+8. `sanyo (tokyo sanyo electric)` -- .88
+9. `philips` -- .76
+10. `kodak` -- .84
+
 Conclusions
 ===========
