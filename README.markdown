@@ -23,7 +23,8 @@ This will create an output file, `paper.pdf`.
 ## File Structure
 
 -   `content.markdown` has the main paper content
--   `header.latex` specifies LaTeX-specific styles
+-   `style.latex` specifies LaTeX-specific styles
+-   `images/` contains image assets
 
 ## Credits
 
