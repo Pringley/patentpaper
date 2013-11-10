@@ -188,5 +188,37 @@ for val in vals:
 Analysis
 ========
 
+Choosing a metric for company size
+----------------------------------
+
+We would like to explore whether company size has any correlation with patent
+quality.  Do big innovations originate from big labs, or do smaller companies
+pave the way (only to be later acquired)?
+
+In order to begin this investigation, we need a solid metric to quantify
+"company size." Our first thought was to use a metadata-based solution, such as
+the company's net worth or number of employees. However, it wasn't clear at
+*which point in time* to measure the company size -- does a company's employee
+count in 2013 affect the quality of a patent it filed in the 1980s?
+
+Instead, we choose a very simple metric contained within our dataset: company
+size is defined as the **number of patents submitted**.
+
+This may not be a perfect representation of "size," but it still allows us to
+analyze whether these "prolific" companies are contributing any *important*
+patents or merely a large volume of consequential patents.
+
+Our set of "big companies" will therefore be the 25 companies that applied for
+the largest number of patents. They are, in order with number of LED patents
+each:
+
+> `samsung` (1673), `semiconductor energy lab` (1437), `seiko` (1394), `sharp`
+> (1103), `panasonic` (1094), `sony` (937), `toshiba` (848), `sanyo (tokyo
+> sanyo electric)` (793), `philips` (789), `kodak` (767), `hitachi` (632),
+> `osram` (631), `nec` (621), `lg` (613), `idemitsu kosan co` (553), `canon`
+> (538), `pioneer` (525), `mitsubishi` (501), `rohm` (420), `tdk` (384),
+> `nichia` (370), `fujifilm` (369), `ge` (363), `sumitomo` (323), `lg/philips`
+> (293)
+
 Conclusions
 ===========
