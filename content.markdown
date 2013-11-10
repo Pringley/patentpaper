@@ -142,6 +142,50 @@ Metadata techniques
 -------------------
 \label{sec:metatechs}
 
+### Summed node scores
+
+The simplest way to generalize a node-based technique to a metadata field is to
+set the metadata score equal to the sum of the node scores.
+
+```python
+for node in nodes
+    score = get_score(node)
+    val = node[field]
+    sums[val] += score
+return sums
+```
+
+### Normalized summed scores
+
+We can reduce the impact of a metadata value's frequency by normalizing the
+sums -- that is, divide each sum by the total number of nodes with that value.
+
+```python
+for val, sum in sums
+    norm_factor = count(nodes with val)
+    norm_sums = sum[val] / norm_factor
+return norm_sums
+```
+
+In other words, this is the *mean* score for nodes with a given metadata value.
+
+### Contribution factor
+
+Another approach is to look at all nodes contributed by a certain metadata
+value and count the *percentage* that score above a particular cutoff.
+
+```python
+for node in nodes:
+    score = get_score(node)
+    val = node[field]
+    if score > cutoff:
+        contrib_counts[val] += 1
+    total_counts[val] += 1
+for val in vals:
+    contrib[val] = (contrib_counts[val]
+                    / total_counts[val])
+```
+
 Analysis
 ========
 
