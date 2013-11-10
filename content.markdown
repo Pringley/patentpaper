@@ -9,8 +9,7 @@ their output against known significant patents. We can then rerun good metrics
 on larger sets of patents to discover trends about significant patents.
 
 In this paper, we perform a case study on a set of LED-related patents to
-discover if certain authors, companies, or locations correlate with patent
-success.
+assess the contributions of various companies to the field.
 \end{abstract}
 
 Background
