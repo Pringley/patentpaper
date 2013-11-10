@@ -81,8 +81,16 @@ Laboratory. Version 1.8.1. August 4, 2013.
 Techniques
 ==========
 
-Highest outdegree
------------------
+This section is split into two parts. In Section \ref{sec:nodetechniques}, we
+present techniques to rank the impact of individual nodes. In Section
+\ref{sec:metatechs}, we present methods of generalizing these node-based
+techniques to draw conclusions about graph metadata.
+
+Node ranking techniques
+-----------------------
+\label{sec:nodetechniques}
+
+### Highest outdegree
 
 The simplest method for determining the importance of a node in a citation
 network is to simply count the number of times the node is cited -- that is, a
@@ -94,8 +102,7 @@ These are the top three patents sorted by outdegree:
 2. US4539507 A (360 citations) -- Kodak 1983
 3. US5247190 A (339 citations) -- Cambridge 1990
 
-PageRank
---------
+### PageRank
 \label{sec:pageranktechnique}
 
 These are the top three patents sorted by PageRank score:
@@ -106,8 +113,7 @@ These are the top three patents sorted by PageRank score:
 
 US5247190 A (Cambridge 1990) is ranked seventh.
 
-HITS
-----
+### HITS
 \label{sec:hitstechnique}
 
 These are the top three patents sorted by Hub score from the HITS algorithm:
@@ -122,8 +128,7 @@ These patents have outdegree of 120 and 110 respectively, and would be ranked
 (The third node exists in the data graph but is missing any metadata to
 identify which patent it corresponds to.)
 
-Neighborhood size
------------------
+### Neighborhood size
 
 One new metric we explored was neighborhood size -- rank nodes by the number of
 other nodes that can be reached within a fixed number of forward edges. These
@@ -132,6 +137,10 @@ are the top three patents sorted by 2-neighborhood:
 1. US6791119 B2 -- Cree 2002
 2. US6830828 B2 -- Princeton 2001
 3. US6175345 B1 -- Canon 1998
+
+Metadata techniques
+-------------------
+\label{sec:metatechs}
 
 Analysis
 ========
