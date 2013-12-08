@@ -1,5 +1,48 @@
-% Techniques for identifying influence in citation networks
-% Benjamin Pringle; Mukkai Krishnamoorthy; Kenneth Simons
+---
+title: Techniques for identifying influence in citation networks
+author: Benjamin Pringle; Mukkai Krishnamoorthy; Kenneth Simons
+numbersections: true
+header-includes:
+ - \setlength{\parskip}{0.0pt plus 1.0pt}
+ - \setlength{\parindent}{15.0pt}
+cs1: acm-sig-proceedings.csl
+references:
+ - id: nplpatent
+   title: Radiation Sources
+   author: Roger Partridge
+   type: patent
+   number: US3995299 A
+   issued:
+    date-parts:
+     - - 1976
+       - 11
+       - 30
+ - id: improvedpowerpatent
+   title: Organic electroluminescent devices having improved power conversion efficiencies
+   authors:
+    - Ching Tang
+    - Steven Van Slyke
+   type: patent
+   number: US4539507 A
+   issued:
+    date-parts:
+     - - 1985
+       - 9
+       - 3
+ - id: modifiedzone
+   title: Electroluminescent device with modified thin film luminescent zone
+   authors:
+    - Ching Tang
+    - Chin Chen
+    - Ramanuj Goswami
+   type: patent
+   number: US4769292 A
+   issued:
+    date-parts:
+     - - 1988
+       - 9
+       - 6
+---
 
 \begin{abstract}
 Certain patents are historically important or relevant.  We present several
@@ -32,27 +75,17 @@ Important LED patents
 
 In October 1975, Roger Partridge with the National Physics Laborotory in the
 United Kingdom filed the first patent demonstrating electroluminescence from
-polymer films,[^nplpatent] one of the key advances that lead to the development
+polymer films [@nplpatent], one of the key advances that lead to the development
 of organic LEDs.
 
-Kodak researchers Ching Tang and Steven Van Slyke built on this research in
-March 1983 when they filed a new patent demonstrating improved power conversion
-in organic electroluminescent devices.[^improvedpowerpatent]
+Kodak researchers built on this research in March 1983 when they filed a new
+patent demonstrating improved power conversion in organic electroluminescent
+devices [@improvedpowerpatent].
 
 Finally, in October 1987, another group of Kodak scientists patented the first
-organic LED device,[^modifiedzone], now used in televisions, monitors, and
+organic LED device [@modifiedzone], now used in televisions, monitors, and
 phones.
 
-[^nplpatent]: Partridge, Roger. *Radiation Sources.* US3995299 A. Filed October
-7, 1975; published Nov 30, 1976.
-
-[^improvedpowerpatent]: Tang, Ching; Van Slyke, Steven. *Organic
-electroluminescent devices having improved power conversion efficiencies.*
-US4539507 A. Filed March 25, 1983; published September 3, 1985.
-
-[^modifiedzone]: Chen, Chin; Goswami, Ramanuj; Tang, Chin. *Electroluminescent
-device with modified thin film luminescent zone.* US4769292 A. Filed October
-14, 1987; published Septebmer 6, 1988.
 
 Data format and representation
 ------------------------------
@@ -293,3 +326,11 @@ mean outdegree more than *double* that of the entire dataset.
 
 By contribution factor analysis, each of the top 10 (except Samsung) still
 exceeded the expected ratio.
+
+\appendix
+
+Code
+====
+
+Works Cited
+===========

@@ -1,19 +1,16 @@
 OUTPUT = paper.pdf
 
 CONTENT = content.markdown
-STYLE = style.latex
 
 PANDOC = pandoc
 FLAGS = --smart \
 		--standalone \
-		--number-sections \
-		--variable geometry:margin=1in \
-		--include-in-header $(STYLE) \
+		--filter pandoc-citeproc \
 		--output $(OUTPUT)
 
 .PHONY: clean
 
-$(OUTPUT): $(CONTENT) $(STYLE)
+$(OUTPUT): $(CONTENT)
 	$(PANDOC) $(FLAGS) -- $(CONTENT)
 
 clean:
