@@ -101,7 +101,33 @@ Figure \ref{fig:olednet} shows a very simple example drawn from the patents
 described in Section \ref{sec:ledbgnd}.
 
 Our citation graph was supplied as simply a list of tab-separated edges in a
-text file.[^ledgraphsrc] This was straightforward to read and manipulate using
+text file.[^ledgraphsrc]
+
+```
+citingApplnID	citedApplnID
+46015030	1226
+46332773	1226
+49212827	1226
+...
+```
+
+We developed an open source tool called CiteNet[^citenet] to read and analyze
+data of this sort. Below is a subset of the configuration used (the full
+configuration is available in Appendix \ref{sec:cnconfig}).
+
+    {
+        "graph": {
+            "filename": "...",
+            "delimiter": "\t",
+            "encoding": "ISO-8859-1",
+            "reverse_edges": true,
+            "suppress_warnings": true,
+            "ignore_header": true
+        },
+        ...
+    }
+
+This was straightforward to read and manipulate using
 the Python NetworkX library,[^networkx] used throughout this investigation.
 
 [^ledgraphsrc]: Simons, Ken. **TODO: Source for LED info??**
@@ -109,6 +135,8 @@ the Python NetworkX library,[^networkx] used throughout this investigation.
 [^networkx]: Hagberg, Aric; Schult, Dan; Pieter, Swart; et al. *NetworkX:
 High-productivity software for complex networks.* Los Alamos National
 Laboratory. Version 1.8.1. August 4, 2013.
+
+[^citenet]: Pringle, Ben. *CiteNet.* <https://github.com/Pringley/citenet>
 
 Techniques
 ==========
@@ -134,6 +162,9 @@ These are the top three patents sorted by outdegree:
 2. US4539507 A (360 citations) -- Kodak 1983
 3. US5247190 A (339 citations) -- Cambridge 1990
 
+The top two are directly from our summary in Section \ref{sec:ledbgnd}, which
+validates this choice as relatively good.
+
 ### PageRank
 \label{sec:pageranktechnique}
 
@@ -143,7 +174,8 @@ These are the top three patents sorted by PageRank score:
 2. US4539507 A -- Kodak 1983
 3. US4356429 A -- Kodak 1980
 
-US5247190 A (Cambridge 1990) is ranked seventh.
+US5247190 A (Cambridge 1990) is ranked seventh. PageRank doesn't seem to differ
+much from highest outdegree in terms of output.
 
 ### HITS
 \label{sec:hitstechnique}
@@ -315,6 +347,71 @@ the results:
 9. `philips` -- .76
 10. `kodak` -- .84
 
+Date partitioning
+-----------------
+
+Another interesting approach is to look at the filing date of the patents.
+Below is a histogram of number of patents by filing date.
+
+```
+date range	                count
+1940-11-12 to 1945-07-06	1
+1945-07-06 to 1950-02-28	6
+1950-02-28 to 1954-10-23	107
+1954-10-23 to 1959-06-17	247
+1959-06-17 to 1964-02-09	369
+1964-02-09 to 1968-10-03	344
+1968-10-03 to 1973-05-28	362
+1973-05-28 to 1978-01-20	575
+1978-01-20 to 1982-09-14	678
+1982-09-14 to 1987-05-09	1125
+1987-05-09 to 1992-01-01	2257
+1992-01-01 to 1996-08-25	3451
+1996-08-25 to 2001-04-19	8103
+2001-04-19 to 2005-12-12	16019
+2005-12-12 to 2010-08-06	5040
+```
+
+We can partition each company's patents into thirds -- that is, `samsung0`
+contains the first chronological third of Samsung's patents, `samsung1`
+contains the second third, and `samsung2` contains the final third.
+
+We can calculate normalized outdegree for each third:
+
+```
+company    partition  start       end         normalizedoutdeg    count  totalcount
+samsung    0          1989-05-30  2004-06-28  2.6858168761220824  557    1673
+samsung    1          2004-06-28  2005-11-30  1.3375224416517055  557    1673
+samsung    2          2005-12-02  2010-07-13  0.5116279069767442  559    1673
+sel        0          1982-02-09  2002-02-26  8.187891440501044   479    1437
+sel        1          2002-02-28  2004-06-23  5.1941544885177455  479    1437
+sel        2          2004-06-25  2010-01-06  1.3528183716075157  479    1437
+seiko      0          1973-07-13  2002-02-22  5.644396551724138   464    1394
+seiko      1          2002-02-25  2004-01-21  2.543103448275862   464    1394
+seiko      2          2004-01-21  2009-06-18  0.9978540772532188  466    1394
+sharp      0          1972-07-31  1994-02-22  4.809264305177112   367    1103
+sharp      1          1994-02-25  2001-10-29  3.5476839237057223  367    1103
+sharp      2          2001-10-31  2010-02-26  1.8130081300813008  369    1103
+panasonic  0          1963-11-18  1997-10-31  3.4148351648351647  364    1094
+panasonic  1          1997-11-05  2002-02-21  3.6950549450549453  364    1094
+panasonic  2          2002-02-27  2010-03-05  2.2868852459016393  366    1094
+sony       0          1970-04-13  2000-09-11  4.064102564102564   312    937
+sony       1          2000-09-14  2003-08-20  4.0576923076923075  312    937
+sony       2          2003-08-28  2010-02-10  1.5878594249201279  313    937
+toshiba    0          1969-08-25  1993-03-30  4.184397163120567   282    848
+toshiba    1          1993-04-13  2001-04-27  6.1063829787234045  282    848
+toshiba    2          2001-04-27  2010-03-23  2.3732394366197185  284    848
+sanyo      0          1976-12-09  2000-03-17  6.943181818181818   264    793
+sanyo      1          2000-03-17  2003-03-28  3.25                264    793
+sanyo      2          2003-03-28  2009-01-15  1.4037735849056603  265    793
+philips    0          1954-01-29  1999-09-08  6.011406844106464   263    789
+philips    1          1999-09-08  2004-07-01  6.068441064638783   263    789
+philips    2          2004-07-09  2009-06-03  1.326996197718631   263    789
+kodak      0          1965-03-25  2001-01-30  23.63529411764706   255    767
+kodak      1          2001-02-02  2003-09-23  4.670588235294118   255    767
+kodak      2          2003-09-24  2008-02-25  1.7042801556420233  257    767
+```
+
 Conclusions
 ===========
 
@@ -329,8 +426,116 @@ exceeded the expected ratio.
 
 \appendix
 
-Code
-====
+CiteNet
+=======
+
+Config
+------
+
+\label{sec:cnconfig}
+
+```
+{
+    "graph": {
+        "filename": "citation pairs by applnID simple try sorted by cited.txt",
+        "delimiter": "\t",
+        "encoding": "ISO-8859-1",
+        "reverse_edges": true,
+        "suppress_warnings": true,
+        "ignore_header": true
+    },
+    "metadata": [
+        {
+            "filename": "LEDs patents keyinfo.txt",
+            "delimiter": "\t",
+            "encoding": "ISO-8859-1",
+            "suppress_warnings": true,
+            "id_field": "applnID"
+        },
+        {
+            "filename": "LEDs patents applicants longform.txt",
+            "delimiter": "\t",
+            "encoding": "ISO-8859-1",
+            "suppress_warnings": true,
+            "id_field": "applnID"
+        }
+    ],
+    "reports": [
+        {
+            "function": "metadata_histogram",
+            "output": "reports/company_histogram.txt",
+            "delimiter": "\t",
+            "encoding": "ISO-8859-1",
+            "options": {
+                "field": "appMyName"
+            }
+        },
+        {
+            "function": "date_histogram",
+            "output": "reports/date_histogram.txt",
+            "delimiter": "\t",
+            "encoding": "ISO-8859-1",
+            "options": {
+                "date_field": "applnFilingDate",
+                "date_format": "%d%b%Y",
+                "bins": 15
+            }
+        },
+        {
+            "function": "citation_histogram",
+            "output": "reports/citation_histogram.txt",
+            "delimiter": "\t",
+            "encoding": "ISO-8859-1",
+            "options": {
+                "date_field": "applnFilingDate",
+                "date_format": "%d%b%Y",
+                "bins": 15
+            }
+        },
+        {
+            "function": "normalized_outdegree_by_date_and_metadata",
+            "output": "reports/normalized_outdegree_by_company_and_date.txt",
+            "delimiter": "\t",
+            "encoding": "ISO-8859-1",
+            "options": {
+                "field": "appMyName",
+                "date_field": "applnFilingDate",
+                "date_format": "%d%b%Y",
+                "bins": 3
+            }
+        },
+        {
+            "function": "normalized_outdegree_by_metadata",
+            "output": "reports/normalized_outdegree_by_company.txt",
+            "delimiter": "\t",
+            "encoding": "ISO-8859-1",
+            "options": {
+                "field": "appMyName"
+            }
+        },
+        {
+            "function": "outdegree_histogram",
+            "output": "reports/outdegree_histogram.txt",
+            "delimiter": "\t",
+            "encoding": "ISO-8859-1",
+            "options": {}
+        },
+        {
+            "function": "good_outdegree_ratio_by_metadata",
+            "output": "reports/good_outdegree_ratio_by_company.txt",
+            "delimiter": "\t",
+            "encoding": "ISO-8859-1",
+            "options": {
+                "field": "appMyName",
+                "ratio_cutoff": 0.25
+            }
+        }
+    ],
+    "options": {
+        "cache_reports": false
+    }
+}
+```
 
 Works Cited
 ===========
